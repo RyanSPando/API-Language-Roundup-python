@@ -21,13 +21,9 @@ def hello():
 def donuts():
     try:
         cur.execute("""SELECT * from donut""")
-        rows = cur.fetchall()
-        response = ''
-        my_list = []
-        for row in rows:
-            my_list.append(row[0])
+        donuts = cur.fetchall()
 
-        return jsonify(my_list)
+        return jsonify(donuts)
     except Exception as e:
         print(e)
         return []
