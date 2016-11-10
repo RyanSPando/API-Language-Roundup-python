@@ -1,1 +1,1 @@
-web: gunicorn donuttycoon
+web: gunicorn app:app
