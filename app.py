@@ -20,10 +20,11 @@ def hello():
 @app.route('/donuts')
 def donuts():
     try:
-        cur.execute("""SELECT * from donut""")
+        cur.execute("SELECT * from donut;")
         donuts = cur.fetchall()
-
+        print(donuts)
         return jsonify(donuts)
+
     except Exception as e:
         print(e)
         return []
