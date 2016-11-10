@@ -16,9 +16,9 @@ cur = conn.cursor()
 def hello():
     return "Hello World!"
 
-@app.route('/donuts', methods=['GET'])
+@app.route('/donuts', methods=['GET', 'POST'])
 def donuts():
-    if request.method == 'GET'
+    if request.method == 'GET':
         results = []
         try:
             cur.execute("SELECT * from donut;")
@@ -31,7 +31,7 @@ def donuts():
             print(e)
             return []
 
-    if request.method == 'POST'
+    if request.method == 'POST':
         try:
             results = []
             cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", [request.form['name'], request.form['topping'], request.form['price']])
