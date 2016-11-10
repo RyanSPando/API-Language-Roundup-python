@@ -6,7 +6,7 @@ from os.path import exists
 from os import makedirs
 
 app = Flask(__name__)
-url = urlparse.parse(os.environ.get('DATABASE_URL'))
+url = urlparse(os.environ.get('DATABASE_URL'))
 db = "dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname)
 schema = "schema.sql"
 conn = psycopg2.connect(db)
