@@ -30,7 +30,7 @@ def donuts():
         print(e)
         return []
 
-@app.route('/donuts/<int:id>')
+@app.route('/donuts/<id>')
 def donut(id=None):
     results = []
     try:
