@@ -19,11 +19,14 @@ def hello():
 
 @app.route('/donuts')
 def donuts():
+    results = []
     try:
         cur.execute("SELECT * from donut;")
-        donuts = cur.fetchall()
-        print(donuts)
-        return jsonify(donuts)
+        datarows = cur.fetchall()
+        colnames = [desc[0] for desc in curs.description]
+        for row in cur.fetchall():
+            results.append(dict(zip(colnames, datarows)))
+        return jsonify(results)
 
     except Exception as e:
         print(e)
