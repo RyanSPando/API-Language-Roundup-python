@@ -34,8 +34,8 @@ def donuts():
     if request.method == 'POST':
         try:
             results = []
-            print(request.form)
-            cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", [request.form['name'], request.form['topping'], request.form['price']])
+            print(request.args)
+            cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", [request.args['name'], request.args['topping'], request.args['price']])
 
             colnames = [desc[0] for desc in cur.description]
             for row in cur.fetchall():
