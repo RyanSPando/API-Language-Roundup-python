@@ -18,17 +18,32 @@ def hello():
 
 @app.route('/donuts', methods=['GET'])
 def donuts():
-    results = []
-    try:
-        cur.execute("SELECT * from donut;")
-        colnames = [desc[0] for desc in cur.description]
-        for row in cur.fetchall():
-            results.append(dict(zip(colnames, row)))
-        return jsonify(results)
+    if request.method == 'GET'
+        results = []
+        try:
+            cur.execute("SELECT * from donut;")
+            colnames = [desc[0] for desc in cur.description]
+            for row in cur.fetchall():
+                results.append(dict(zip(colnames, row)))
+            return jsonify(results)
 
-    except Exception as e:
-        print(e)
-        return []
+        except Exception as e:
+            print(e)
+            return []
+
+    if request.method == 'POST'
+        try:
+            results = []
+            cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", [request.form['name'], request.form['topping'], request.form['price']])
+            colnames = [desc[0] for desc in cur.description]
+            for row in cur.fetchall():
+                results.append(dict(zip(colnames, row)))
+            return jsonify(results)
+
+        except Exception as e:
+            print(e)
+            return []
+
 
 @app.route('/donuts/<id>')
 def donut(id=None):
@@ -39,21 +54,6 @@ def donut(id=None):
         for row in cur.fetchall():
             results.append(dict(zip(colnames, row)))
         return jsonify(results)
-
-    except Exception as e:
-        print(e)
-        return []
-
-@app.route('/donuts', methods=['POST'])
-def add_entry():
-    try:
-        results = []
-
-        # cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", [request.form['name'], request.form['topping'], request.form['price']])
-        # colnames = [desc[0] for desc in cur.description]
-        # for row in cur.fetchall():
-        #     results.append(dict(zip(colnames, row)))
-        return jsonify(request.form['name'])
 
     except Exception as e:
         print(e)
