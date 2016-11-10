@@ -1,7 +1,7 @@
 import os
 from flask import Flask, jsonify
 import psycopg2
-import urlparse
+from urllib.parse import urlparse
 from os.path import exists
 from os import makedirs
 
