@@ -31,7 +31,7 @@ def donuts():
 
         return jsonify(my_list)
     except Exception as e:
-        print 'e'
+        print(e)
         return []
 
 if __name__ == '__main__':
