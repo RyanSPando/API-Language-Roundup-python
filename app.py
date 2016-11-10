@@ -16,7 +16,7 @@ cur = conn.cursor()
 def hello():
     return "Hello World!"
 
-@app.route('/donuts')
+@app.route('/donuts', methods=['GET'])
 def donuts():
     results = []
     try:
