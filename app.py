@@ -31,7 +31,7 @@ def donuts():
         return []
 
 @app.route('/donuts/<int:id>')
-def donut():
+def donut(id=None):
     results = []
     try:
         cur.execute("SELECT * from donut where id=" + id + ";")
