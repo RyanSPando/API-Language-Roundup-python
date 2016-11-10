@@ -30,6 +30,32 @@ def donuts():
         print(e)
         return []
 
+@app.route('/donuts/<int:id>')
+def donuts():
+    results = []
+    try:
+        cur.execute("SELECT * from donut where id=" + id + ";")
+        colnames = [desc[0] for desc in cur.description]
+        for row in cur.fetchall():
+            results.append(dict(zip(colnames, row)))
+        return jsonify(results)
+
+    except Exception as e:
+        print(e)
+        return []
+
+@app.route('/donuts', methods=['POST'])
+def add_entry():
+    try:
+        cur.execute("INSERT into donut (name, topping, price) values (?, ?, ?) returning *", [request.form['name'], request.form['text'], request.form['price']])
+        for row in cur.fetchall():
+            results.append(dict(zip(colnames, row)))
+        return jsonify(results)
+
+    except Exception as e:
+        print(e)
+        return []
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
