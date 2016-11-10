@@ -1,5 +1,5 @@
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import psycopg2
 from urllib.parse import urlparse
 from os.path import exists
