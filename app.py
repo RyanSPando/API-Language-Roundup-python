@@ -1,6 +1,11 @@
 import os
-from flask import Flask
+from flask import Flask, jsonify
 import psycopg2
+import urlparse
+from os.path import exists
+from os import makedirs
+
+
 
 app = Flask(__name__)
 url = urlparse.urlparse(os.environ.get('DATABASE_URL'))
@@ -26,7 +31,7 @@ def donuts():
 
         return jsonify(my_list)
     except Exception as e:
-        print e
+        print 'e'
         return []
 
 if __name__ == '__main__':
