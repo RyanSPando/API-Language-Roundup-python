@@ -48,6 +48,7 @@ def donut(id=None):
 def add_entry():
     try:
         cur.execute("INSERT into donut (name, topping, price) values (%s, %s, %s) returning *", [request.form['name'], request.form['topping'], request.form['price']])
+        colnames = [desc[0] for desc in cur.description]
         for row in cur.fetchall():
             results.append(dict(zip(colnames, row)))
         return jsonify(results)
