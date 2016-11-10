@@ -47,7 +47,7 @@ def donut(id=None):
 @app.route('/donuts', methods=['POST'])
 def add_entry():
     try:
-        cur.execute("INSERT into donut (name, topping, price) values (?, ?, ?) returning *", [request.args['name'], request.args['text'], request.args['price']])
+        cur.execute("INSERT into donut (name, topping, price) values (?, ?, ?) returning *", [request.args['name'], request.args['topping'], request.args['price']])
         for row in cur.fetchall():
             results.append(dict(zip(colnames, row)))
         return jsonify(results)
