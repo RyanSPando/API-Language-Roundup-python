@@ -12,7 +12,6 @@ schema = "schema.sql"
 conn = psycopg2.connect(db)
 cur = conn.cursor()
 
-
 @app.route('/')
 def hello():
     return "Hello World!"
@@ -23,7 +22,7 @@ def donuts():
     try:
         cur.execute("SELECT * from donut;")
         datarows = cur.fetchall()
-        colnames = [desc[0] for desc in curs.description]
+        colnames = [desc[0] for desc in cur.description]
         for row in cur.fetchall():
             results.append(dict(zip(colnames, datarows)))
         return jsonify(results)
