@@ -48,11 +48,12 @@ def donut(id=None):
 def add_entry():
     try:
         results = []
-        cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", (request.form['name'], request.form['topping'], request.form['price']))
-        colnames = [desc[0] for desc in cur.description]
-        for row in cur.fetchall():
-            results.append(dict(zip(colnames, row)))
-        return jsonify(results)
+
+        # cur.execute("INSERT INTO donut (name, topping, price) VALUES (%s, %s, %s) RETURNING *", [request.form['name'], request.form['topping'], request.form['price']])
+        # colnames = [desc[0] for desc in cur.description]
+        # for row in cur.fetchall():
+        #     results.append(dict(zip(colnames, row)))
+        return jsonify(request.form['name'])
 
     except Exception as e:
         print(e)
