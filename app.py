@@ -21,10 +21,9 @@ def donuts():
     results = []
     try:
         cur.execute("SELECT * from donut;")
-        datarows = cur.fetchall()
         colnames = [desc[0] for desc in cur.description]
         for row in cur.fetchall():
-            results.append(dict(zip(colnames, datarows)))
+            results.append(dict(zip(colnames, row)))
         return jsonify(results)
 
     except Exception as e:
