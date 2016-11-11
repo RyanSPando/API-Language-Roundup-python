@@ -73,6 +73,19 @@ def donut(id=None):
         except Exception as e:
             print(e)
             return []
+
+    if request.method == 'DELETE':
+        results = []
+        try:
+            cur.execute("DELETE from donut where id=" + id + " RETURNING *;")
+            colnames = [desc[0] for desc in cur.description]
+            for row in cur.fetchall():
+                results.append(dict(zip(colnames, row)))
+            return jsonify(results)
+
+        except Exception as e:
+            print(e)
+            return []
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)
