@@ -25,6 +25,7 @@ def donuts():
             colnames = [desc[0] for desc in cur.description]
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
+                conn.complete()
             return jsonify(results)
 
         except Exception as e:
@@ -39,6 +40,7 @@ def donuts():
             colnames = [desc[0] for desc in cur.description]
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
+                conn.complete()
             return jsonify(results)
 
         except Exception as e:
@@ -55,6 +57,7 @@ def donut(id=None):
             colnames = [desc[0] for desc in cur.description]
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
+                conn.complete()
             return jsonify(results)
 
         except Exception as e:
@@ -68,6 +71,7 @@ def donut(id=None):
             colnames = [desc[0] for desc in cur.description]
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
+            conn.complete()
             return jsonify(results)
 
         except Exception as e:
@@ -81,6 +85,7 @@ def donut(id=None):
             colnames = [desc[0] for desc in cur.description]
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
+                conn.complete()
             return jsonify(results)
 
         except Exception as e:
