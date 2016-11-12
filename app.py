@@ -7,6 +7,7 @@ from os import makedirs
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 url = urlparse(os.environ.get('DATABASE_URL'))
 db = "dbname=%s user=%s password=%s host=%s " % (url.path[1:], url.username, url.password, url.hostname)
 schema = "schema.sql"
