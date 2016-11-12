@@ -4,6 +4,7 @@ import psycopg2
 from urllib.parse import urlparse
 from os.path import exists
 from os import makedirs
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 url = urlparse(os.environ.get('DATABASE_URL'))
@@ -26,7 +27,7 @@ def donuts():
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
                 conn.commit()
-                
+
             return jsonify(results)
 
         except Exception as e:
@@ -42,7 +43,7 @@ def donuts():
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
                 conn.commit()
-                
+
             return jsonify(results)
 
         except Exception as e:
@@ -60,7 +61,7 @@ def donut(id=None):
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
                 conn.commit()
-                
+
             return jsonify(results)
 
         except Exception as e:
@@ -75,7 +76,7 @@ def donut(id=None):
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
             conn.commit()
-            
+
             return jsonify(results)
 
         except Exception as e:
@@ -90,7 +91,7 @@ def donut(id=None):
             for row in cur.fetchall():
                 results.append(dict(zip(colnames, row)))
                 conn.commit()
-                
+
             return jsonify(results)
 
         except Exception as e:
